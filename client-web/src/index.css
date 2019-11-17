@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.key-input {
+  width: 300px;
+  font-size: 24px;
+  margin: 50px;
+  text-align: center;
+}
