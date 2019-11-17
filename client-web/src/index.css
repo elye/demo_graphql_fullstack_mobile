@@ -15,6 +15,14 @@ code {
 .key-input {
   width: 300px;
   font-size: 24px;
-  margin: 50px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.key-submit-button {
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  font-size: 24px;
   text-align: center;
 }

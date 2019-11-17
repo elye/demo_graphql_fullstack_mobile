@@ -4,7 +4,10 @@ export default class SearchBox extends Component {
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                <InputBox />
+                <div > <InputBox /> </div>
+                <button className="key-submit-button" type="submit">
+                    Get Wiki Hit
+                </button>
             </form>
         );
     }
