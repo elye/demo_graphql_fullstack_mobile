@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 export default class SearchBox extends Component {
     state = { keyword: '' };
 
-    onSubmit = _ => {
+    onSubmit = event => {
+        event.preventDefault()
         this.props.onSubmit(this.state.keyword)
     };
 
