@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import SearchBox from "./SearchBox";
+import Container from "./Container";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <SearchBox/>
+        <Container/>
       </header>
     </div>
   );
