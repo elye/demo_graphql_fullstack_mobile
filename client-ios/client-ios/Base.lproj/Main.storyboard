@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="client_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search key" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kwz-Ir-mE1">
+                                <rect key="frame" x="132" y="94" width="150" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="187-vp-Xd9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoP-8c-1hA">
+                                <rect key="frame" x="147" y="151" width="120" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="wP4-Hb-rMf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Get Wiki Hit"/>
+                                <connections>
+                                    <action selector="onGetWikiHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nk3-fI-ke3"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1Pd-PN-mx2">
+                                <rect key="frame" x="197" y="212" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rn-rb-rdI">
+                                <rect key="frame" x="50" y="212" width="314" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1Pd-PN-mx2" firstAttribute="top" secondItem="RoP-8c-1hA" secondAttribute="bottom" constant="25" id="3Z2-gD-dDV"/>
+                            <constraint firstItem="2rn-rb-rdI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="59O-vb-h2a"/>
+                            <constraint firstItem="Kwz-Ir-mE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="95D-jX-B8q"/>
+                            <constraint firstItem="RoP-8c-1hA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L2c-Vn-Ra1"/>
+                            <constraint firstItem="2rn-rb-rdI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="X78-qM-0gr"/>
+                            <constraint firstItem="Kwz-Ir-mE1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="iNH-9D-czY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2rn-rb-rdI" secondAttribute="trailing" constant="50" id="kxh-U8-hVu"/>
+                            <constraint firstItem="RoP-8c-1hA" firstAttribute="top" secondItem="Kwz-Ir-mE1" secondAttribute="bottom" constant="20" id="lSl-LP-JFS"/>
+                            <constraint firstItem="2rn-rb-rdI" firstAttribute="top" secondItem="RoP-8c-1hA" secondAttribute="bottom" constant="25" id="m1e-Rg-fdJ"/>
+                            <constraint firstItem="1Pd-PN-mx2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oPP-5f-1fr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="editTextSearch" destination="Kwz-Ir-mE1" id="adH-UF-uLP"/>
+                        <outlet property="labelResult" destination="2rn-rb-rdI" id="Knv-2t-bbY"/>
+                        <outlet property="loadingIndicator" destination="1Pd-PN-mx2" id="Uvw-ga-7eZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="64.955357142857139"/>
+        </scene>
+    </scenes>
+</document>
