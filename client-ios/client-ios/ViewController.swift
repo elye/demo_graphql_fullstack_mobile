@@ -39,8 +39,9 @@ class ViewController: UIViewController {
     let url = "http://EDIT_YOUR_HOST_HERE:4000"
 
     let search = """
+    query GetWikicountByKeyword($keyword: String!)
     { wikiCount
-        (keyword: \"\(searchText)\") {
+        (keyword: $keyword) {
           keyword
           totalhits
         }
@@ -48,7 +49,8 @@ class ViewController: UIViewController {
     """
 
     let parameters: Parameters = [
-      "query": search
+      "query": search,
+      "variables": "{ \"keyword\": \"\(searchText)\" }"
     ]
 
     request?.cancel()
