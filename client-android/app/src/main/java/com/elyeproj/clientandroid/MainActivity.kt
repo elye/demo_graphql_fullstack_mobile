@@ -11,27 +11,39 @@ import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody
+import okhttp3.OkHttpClient
+import org.json.JSONObject
+
 
 class MainActivity : AppCompatActivity() {
 
     object Model {
-        data class Result(val query: Query)
-        data class Query(val searchinfo: SearchInfo)
-        data class SearchInfo(val totalhits: Int)
+        data class Result(val data: Data)
+        data class Data(val wikiCount: WikiCount)
+        data class WikiCount(val keyword: String, val totalhits: Int)
+    }
+
+    companion object {
+        const val queryString = """
+    query GetWikicountByKeyword(${"$"}keyword: String!)
+    { wikiCount
+        (keyword: ${"$"}keyword) {
+          keyword
+          totalhits
+        }
+    }
+    """
     }
 
     private var disposable = Disposables.disposed()
     private val httpClient = OkHttpClient.Builder().build()
     private val httpUrlBuilder = HttpUrl.Builder()
-        .scheme("https")
-        .host("en.wikipedia.org")
-        .addPathSegment("w")
-        .addPathSegment("api.php")
-        .addQueryParameter("action", "query")
-        .addQueryParameter("format", "json")
-        .addQueryParameter("list", "search")
+        .scheme("http")
+        .host("EDIT_YOUR_HOST_HERE")
+        .port(4000)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { showResult("Count is $it") },
+                { showResult(it) },
                 { showResult(it.localizedMessage) })
     }
 
@@ -64,16 +76,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchOnBackground(searchText: String): String {
-        val httpUrl = httpUrlBuilder.addQueryParameter("srsearch", searchText)
+        val params = HashMap<String, String>()
+        params["query"] = queryString
+        params["variables"] = "{ \"keyword\": \"${searchText}\""
+        val parameter = JSONObject(params)
+
+        val json = """
+            { "query": "{wikiCount(keyword: \"${searchText}\") {keyword totalhits}}" }
+        """.trimIndent()
+
+        val JSON = "application/json; charset=utf-8".toMediaType()
+        val body = RequestBody.create(JSON, json)
+
+        val httpUrl = httpUrlBuilder.build()
+        val request = Request.Builder()
+            .header("Content-Type", "application/json")
+            .url(httpUrl)
+            .post(body)
             .build()
-        val request = Request.Builder().get().url(httpUrl).build()
         val response = httpClient.newCall(request).execute()
 
         return if (response.isSuccessful) {
             val raw = response.body?.string()
             try {
                 val result = Gson().fromJson(raw, Model.Result::class.java)
-                result.query.searchinfo.totalhits.toString()
+                with(result.data.wikiCount) {
+                    "$keyword:$totalhits"
+                }
             } catch (exception: JsonSyntaxException) {
                 "No data found "
             }
