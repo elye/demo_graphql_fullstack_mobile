@@ -1,8 +1,8 @@
 package com.elyeproj.clientandroid
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import io.reactivex.Single
@@ -11,10 +11,10 @@ import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.HttpUrl
-import okhttp3.Request
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody
 import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
 
@@ -27,15 +27,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val queryString = """
-    query GetWikicountByKeyword(${"$"}keyword: String!)
-    { wikiCount
-        (keyword: ${"$"}keyword) {
-          keyword
-          totalhits
-        }
-    }
-    """
+        val queryString = """
+            query GetWikicountByKeyword(${"$"}keyword: String!){ 
+                wikiCount(keyword: ${"$"}keyword) {
+                    keyword 
+                    totalhits
+                }
+            }
+            """.trimIndent().replace("\n", "")
     }
 
     private var disposable = Disposables.disposed()
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         disposable.dispose()
         disposable = Single.just(searchText)
-            .map{fetchOnBackground(it)}
+            .map { fetchOnBackground(it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -78,15 +77,9 @@ class MainActivity : AppCompatActivity() {
     private fun fetchOnBackground(searchText: String): String {
         val params = HashMap<String, String>()
         params["query"] = queryString
-        params["variables"] = "{ \"keyword\": \"${searchText}\""
-        val parameter = JSONObject(params)
-
-        val json = """
-            { "query": "{wikiCount(keyword: \"${searchText}\") {keyword totalhits}}" }
-        """.trimIndent()
-
-        val JSON = "application/json; charset=utf-8".toMediaType()
-        val body = RequestBody.create(JSON, json)
+        params["variables"] = "{\"keyword\": \"${searchText}\"}"
+        val body = JSONObject(params)
+            .toString().toRequestBody("application/json; charset=utf-8".toMediaType())
 
         val httpUrl = httpUrlBuilder.build()
         val request = Request.Builder()
