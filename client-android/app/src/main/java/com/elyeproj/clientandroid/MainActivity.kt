@@ -3,6 +3,9 @@ package com.elyeproj.clientandroid
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.apollographql.apollo.ApolloCall
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.exception.ApolloException
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import io.reactivex.Single
@@ -16,7 +19,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +54,41 @@ class MainActivity : AppCompatActivity() {
     fun beginSearch(view: View) {
         if (searchText.text.isNotBlank()) {
             performFetch(searchText.text.toString())
+        }
+    }
+
+    fun beginApolloSearch(view: View) {
+        if (searchText.text.isNotBlank()) {
+            performFetchApollo(searchText.text.toString())
+        }
+    }
+
+    private fun performFetchApollo(keyword: String) {
+        resultText.text = ""
+        progressIndicator.visibility = View.VISIBLE
+
+        ApolloConnector.setupApollo().query(
+            GetWikicountByKeywordQuery
+                .builder()
+                .keyword(keyword)
+                .build()
+        )
+            .enqueue(object : ApolloCall.Callback<GetWikicountByKeywordQuery.Data>() {
+                override fun onResponse(response: Response<GetWikicountByKeywordQuery.Data>) {
+                    response.data()?.wikiCount?.run {
+                        showApolloResult("${keyword()}:${totalhits()}")
+                    } ?: showApolloResult("No Result")
+                }
+
+                override fun onFailure(e: ApolloException) {
+                    showApolloResult(e.localizedMessage)
+                }
+            })
+    }
+
+    private fun showApolloResult(result: String) {
+        runOnUiThread {
+            showResult("Apollo: $result")
         }
     }
 
