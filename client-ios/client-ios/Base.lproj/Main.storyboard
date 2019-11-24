@@ -34,11 +34,23 @@
                                     <action selector="onGetWikiHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nk3-fI-ke3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooM-We-dkX">
+                                <rect key="frame" x="107" y="212" width="200" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="ZRd-5o-ngw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Get Wiki Hit (Apollo)"/>
+                                <connections>
+                                    <action selector="onGetWikiHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fQo-Vx-CwR"/>
+                                    <action selector="onGetWikiHitApollo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W8s-Wc-jvq"/>
+                                </connections>
+                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1Pd-PN-mx2">
-                                <rect key="frame" x="197" y="212" width="20" height="20"/>
+                                <rect key="frame" x="197" y="273" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rn-rb-rdI">
-                                <rect key="frame" x="50" y="212" width="314" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYT-4i-eNg">
+                                <rect key="frame" x="50" y="283" width="314" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -46,22 +58,24 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1Pd-PN-mx2" firstAttribute="top" secondItem="RoP-8c-1hA" secondAttribute="bottom" constant="25" id="3Z2-gD-dDV"/>
-                            <constraint firstItem="2rn-rb-rdI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="59O-vb-h2a"/>
                             <constraint firstItem="Kwz-Ir-mE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="95D-jX-B8q"/>
                             <constraint firstItem="RoP-8c-1hA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L2c-Vn-Ra1"/>
-                            <constraint firstItem="2rn-rb-rdI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="X78-qM-0gr"/>
+                            <constraint firstItem="ooM-We-dkX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xz6-zz-W1h"/>
+                            <constraint firstItem="ooM-We-dkX" firstAttribute="top" secondItem="RoP-8c-1hA" secondAttribute="bottom" constant="25" id="arL-Xu-CgD"/>
+                            <constraint firstItem="uYT-4i-eNg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="awo-11-lap"/>
+                            <constraint firstItem="1Pd-PN-mx2" firstAttribute="top" secondItem="ooM-We-dkX" secondAttribute="bottom" constant="25" id="fi1-We-q4p"/>
                             <constraint firstItem="Kwz-Ir-mE1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="iNH-9D-czY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2rn-rb-rdI" secondAttribute="trailing" constant="50" id="kxh-U8-hVu"/>
                             <constraint firstItem="RoP-8c-1hA" firstAttribute="top" secondItem="Kwz-Ir-mE1" secondAttribute="bottom" constant="20" id="lSl-LP-JFS"/>
-                            <constraint firstItem="2rn-rb-rdI" firstAttribute="top" secondItem="RoP-8c-1hA" secondAttribute="bottom" constant="25" id="m1e-Rg-fdJ"/>
+                            <constraint firstItem="uYT-4i-eNg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="lvT-0t-c5f"/>
                             <constraint firstItem="1Pd-PN-mx2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oPP-5f-1fr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uYT-4i-eNg" secondAttribute="trailing" constant="50" id="pF1-r3-3SM"/>
+                            <constraint firstItem="uYT-4i-eNg" firstAttribute="centerY" secondItem="1Pd-PN-mx2" secondAttribute="centerY" id="uSj-Gh-Vo0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="editTextSearch" destination="Kwz-Ir-mE1" id="adH-UF-uLP"/>
-                        <outlet property="labelResult" destination="2rn-rb-rdI" id="Knv-2t-bbY"/>
+                        <outlet property="labelResult" destination="uYT-4i-eNg" id="vbd-rm-tFS"/>
                         <outlet property="loadingIndicator" destination="1Pd-PN-mx2" id="Uvw-ga-7eZ"/>
                     </connections>
                 </viewController>

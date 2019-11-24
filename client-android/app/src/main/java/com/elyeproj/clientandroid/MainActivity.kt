@@ -12,8 +12,7 @@ class MainActivity : AppCompatActivity(), MainView {
         const val BASE = "ENTER_YOUR_HOST_HERE"
         const val PORT = 4000
     }
-
-
+    
     private val apolloPresenter = ApolloPresenter(this)
     private val presenter = MainPresenter(this)
 
