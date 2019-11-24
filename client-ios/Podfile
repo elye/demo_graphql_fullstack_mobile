@@ -8,5 +8,6 @@ target 'client-ios' do
   # Pods for client-ios
   pod 'Alamofire', '4.8.1'
   pod 'SwiftyJSON', '5.0.0'
+  pod 'Apollo', '0.20.0'
 
 end
