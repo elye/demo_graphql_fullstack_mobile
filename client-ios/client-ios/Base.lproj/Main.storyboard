@@ -42,7 +42,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Get Wiki Hit (Apollo)"/>
                                 <connections>
-                                    <action selector="onGetWikiHit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fQo-Vx-CwR"/>
                                     <action selector="onGetWikiHitApollo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W8s-Wc-jvq"/>
                                 </connections>
                             </button>

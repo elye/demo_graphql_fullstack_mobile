@@ -15,8 +15,8 @@ class ViewController: UIViewController {
 
   private var request: DataRequest? = nil
 
-  private let baseUrl = "http://ENTER_YOUR_HOST_HERE:4000"
-  private lazy var apollo = ApolloClient(url: URL(string: self.baseUrl)!)
+  private static let baseUrl = "http://ENTER_YOUR_HOST_HERE:4000"
+  private let apollo = ApolloClient(url: URL(string: ViewController.baseUrl)!)
 
   @IBAction func onGetWikiHitApollo(_ sender: Any) {
     guard let searchText = editTextSearch.text, !searchText.isEmpty else {
@@ -87,7 +87,8 @@ class ViewController: UIViewController {
     ]
 
     request?.cancel()
-    request = Alamofire.SessionManager.default.request(baseUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+    request = Alamofire.SessionManager.default.request(
+      ViewController.baseUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default)
       .responseData { (resData) -> Void in
         self.loadingIndicator.stopAnimating()
 
