@@ -16,6 +16,7 @@
 		3BC03ED6238A6F6A00ABE04E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03ED5238A6F6A00ABE04E /* API.swift */; };
 		3BC03EE3238B63C800ABE04E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03EE2238B63C800ABE04E /* MainView.swift */; };
 		3BC03EE5238B664200ABE04E /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03EE4238B664200ABE04E /* MainPresenter.swift */; };
+		3BC03EE7238B6ADE00ABE04E /* ApolloPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03EE6238B6ADE00ABE04E /* ApolloPresenter.swift */; };
 		643677337A8219AC7E033978 /* Pods_client_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917565D2FAF58F4E5CEFCEFE /* Pods_client_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		3BC03ED5238A6F6A00ABE04E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3BC03EE2238B63C800ABE04E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3BC03EE4238B664200ABE04E /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		3BC03EE6238B6ADE00ABE04E /* ApolloPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloPresenter.swift; sourceTree = "<group>"; };
 		917565D2FAF58F4E5CEFCEFE /* Pods_client_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_client_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7C603A4DA4A6CC8247216F1 /* Pods-client-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-ios.debug.xcconfig"; path = "Target Support Files/Pods-client-ios/Pods-client-ios.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +81,7 @@
 				3B42F92C2385292C00C6AA03 /* Info.plist */,
 				3BC03EE2238B63C800ABE04E /* MainView.swift */,
 				3BC03EE4238B664200ABE04E /* MainPresenter.swift */,
+				3BC03EE6238B6ADE00ABE04E /* ApolloPresenter.swift */,
 			);
 			path = "client-ios";
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				3BC03EE5238B664200ABE04E /* MainPresenter.swift in Sources */,
 				3B42F91F2385292C00C6AA03 /* AppDelegate.swift in Sources */,
 				3BC03ED6238A6F6A00ABE04E /* API.swift in Sources */,
+				3BC03EE7238B6ADE00ABE04E /* ApolloPresenter.swift in Sources */,
 				3BC03EE3238B63C800ABE04E /* MainView.swift in Sources */,
 				3B42F9212385292C00C6AA03 /* SceneDelegate.swift in Sources */,
 			);
