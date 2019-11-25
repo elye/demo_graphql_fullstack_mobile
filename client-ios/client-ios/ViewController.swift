@@ -12,14 +12,8 @@ class ViewController: UIViewController, MainView {
 
   private static let baseUrl = "http://ENTER_YOUR_HOST_HERE:4000"
 
-  private var mainPresenter: MainPresenter? = nil
-  private var apolloPresenter: ApolloPresenter? = nil
-
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    self.mainPresenter = MainPresenter(view: self)
-    self.apolloPresenter = ApolloPresenter(view: self)
-  }
+  private lazy var mainPresenter = MainPresenter(view: self)
+  private lazy var apolloPresenter = ApolloPresenter(view: self)
 
   @IBAction func onGetWikiHitApollo(_ sender: Any) {
     guard let searchText = editTextSearch.text, !searchText.isEmpty else {
@@ -28,7 +22,7 @@ class ViewController: UIViewController, MainView {
 
     labelResult.text = ""
     loadingIndicator.startAnimating()
-    self.apolloPresenter?.fetchData(searchText: searchText)
+    self.apolloPresenter.fetchData(searchText: searchText)
   }
   
   @IBAction func onGetWikiHit(_ sender: Any) {
@@ -38,7 +32,7 @@ class ViewController: UIViewController, MainView {
 
     labelResult.text = ""
     loadingIndicator.startAnimating()
-    self.mainPresenter?.fetchData(searchText: searchText)
+    self.mainPresenter.fetchData(searchText: searchText)
   }
   
   override func viewDidLoad() {
@@ -47,7 +41,7 @@ class ViewController: UIViewController, MainView {
   }
 
   override func viewDidDisappear(_ animated: Bool) {
-    self.mainPresenter?.cancelFetch()
+    self.mainPresenter.cancelFetch()
   }
 
   func showResult(data: String) {
