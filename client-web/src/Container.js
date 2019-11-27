@@ -13,14 +13,10 @@ export default class Container extends Component {
 
     onChange = keyword => {
         this.setState({
-                keyword: this.getHitCount(keyword)
+                keyword: keyword
             }
         );
     };
-
-    getHitCount(keyword) {
-        return keyword
-    }
 
     render() {
         return (
