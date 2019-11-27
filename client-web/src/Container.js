@@ -25,7 +25,7 @@ export default class Container extends Component {
     render() {
         return (
             <div>
-                <div><SearchBox onSubmit={(keyword) => this.onChange(keyword)}/></div>
+                <div><SearchBox caption={"Apollo Wiki Search"} onSubmit={(keyword) => this.onChange(keyword)}/></div>
                 <div><WikiFetch keyword={this.state.keyword}/></div>
                 <div><NormalFetch /></div>
             </div>

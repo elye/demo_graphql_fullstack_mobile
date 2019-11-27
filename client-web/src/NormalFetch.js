@@ -54,7 +54,7 @@ function NormalFetch() {
 
     return (
         <div>
-            <div><SearchBox onSubmit={(keyword) => setKeyword(keyword)}/></div>
+            <div><SearchBox caption={"Normal Wiki Search"} onSubmit={(keyword) => setKeyword(keyword) }/></div>
             <div>
                 {error &&  <SearchResult value={error} />}
                 {isLoading ?

@@ -20,7 +20,7 @@ export default class SearchBox extends Component {
                     <InputBox onChange={this.onChange}/>
                 </div>
                 <button className="key-submit-button" type="submit">
-                    Get Wiki Hit
+                    {this.props.caption}
                 </button>
             </form>
         );
