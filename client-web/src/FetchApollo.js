@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {useQuery} from "@apollo/react-hooks";
 import SearchResult from "./SearchResult";
 import Loading from "./loading"
@@ -15,11 +15,9 @@ const GET_WIKI_HIT = gql`
 `;
 
 export default function FetchApollo() {
-
         const [keyword, setKeyword] = React.useState("");
         const {data, loading, error} = useQuery(GET_WIKI_HIT, {variables: {keyword: keyword}});
 
-        console.log("Keyword: " + keyword)
         let result
         if (keyword === "") result = "No Result";
         else if (loading) result = "loading"
@@ -29,7 +27,7 @@ export default function FetchApollo() {
         return (
             <div>
                 <div><SearchBox caption={"Apollo Wiki Search"} onSubmit={(keyword) => setKeyword(keyword)}/></div>
-                {loading && keyword != "" ?
+                {loading && keyword !== "" ?
                     (<Loading />) :
                     (<div><SearchResult value={result}/></div>)
                 }
