@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import Container from "./Container";
+import NormalFetch from "./NormalFetch";
+import ApolloFetch from "./ApolloFetch";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Container/>
+          <div>
+              <div><ApolloFetch /></div>
+              <div><NormalFetch /></div>
+          </div>
       </header>
     </div>
   );
