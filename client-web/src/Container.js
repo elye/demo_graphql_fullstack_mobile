@@ -4,7 +4,6 @@ import SearchResult from "./SearchResult";
 import {useQuery} from '@apollo/react-hooks';
 import Loading from "./loading"
 import gql from 'graphql-tag';
-import useFetch from "./useFetch";
 
 const GET_WIKI_HIT = gql`
     query GetWikicountByKeyword($keyword: String!) {
@@ -39,7 +38,7 @@ export default class Container extends Component {
             <div>
                 <div><SearchBox onSubmit={(keyword) => this.onChange(keyword)}/></div>
                 <div><WikiHit keyword={this.state.keyword}/></div>
-                <div><NormalFetch keyword={this.state.keyword}/></div>
+                <div><NormalFetch/></div>
             </div>
         );
     }
@@ -57,30 +56,63 @@ function WikiHit({keyword}) {
     return <div><SearchResult value={result}/></div>;
 }
 
-function NormalFetch({keyword}) {
-    const query = {
-        query: "query GetWikicountByKeyword($keyword: String!)" +
-            "{ wikiCount                                      " +
-            "   (keyword: $keyword) {                         " +
-            "      keyword                                    " +
-            "      totalhits                                  " +
-            "    }                                            " +
-            "}                                                ",
-        variables : "{ \"keyword\": \"" + keyword + "\" }"
+function NormalFetch() {
+
+    const [keyword, setKeyword] = React.useState(null);
+    const [response, setResponse] = React.useState(null);
+    const [error, setError] = React.useState(null);
+
+    const url = `http://localhost:4000`;
+
+    const onChange = keyword => {
+        console.log(keyword)
     };
 
-    const res = useFetch(`http://localhost:4000`, query)
-    let result
-    if (keyword === "") result = "No Result";
-    else if (!res.response) return (<Loading />);
-    else {
-        if (res.response == null) {
-            result = "No Result"
-        } else if (res.response.errors != null && res.response.errors.length > 0) {
-            result = res.response.errors[0].message
-        } else {
-            result = res.response.data.wikiCount.keyword + ":" + res.response.data.wikiCount.totalhits;
-        }
-    }
-    return <div><SearchResult value={result}/></div>;
+    React.useEffect(() => {
+        const FetchData = async () => {
+            try {
+                const method = "POST"
+                const headers = {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                };
+                const options = {
+                    method,
+                    headers
+                };
+
+                const body = {
+                    query: "query GetWikicountByKeyword($keyword: String!)" +
+                        "{ wikiCount                                      " +
+                        "   (keyword: $keyword) {                         " +
+                        "      keyword                                    " +
+                        "      totalhits                                  " +
+                        "    }                                            " +
+                        "}                                                ",
+                    variables : "{ \"keyword\": \"" + keyword +"\" }"
+                };
+
+                if (body) options.body = JSON.stringify(body);
+                const res = await fetch(url, options);
+                const json = await res.json();
+                console.log(json)
+                setResponse(json);
+                console.log(response.data.wikiCount)
+            } catch (error) {
+                setError(error);
+            }
+        };
+        FetchData();
+    }, [keyword]);
+
+    return (
+        <div>
+            <div><SearchBox onSubmit={(keyword) => setKeyword(keyword)}/></div>
+            <div>
+                {response && <SearchResult value={
+                    response.data.wikiCount.keyword + ":" + response.data.wikiCount.totalhits}/>
+                }
+            </div>
+        </div>
+    );
 }
