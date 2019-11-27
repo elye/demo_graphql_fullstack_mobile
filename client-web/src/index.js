@@ -4,14 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { ApolloProvider } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+import {ApolloProvider} from '@apollo/react-hooks';
+import {ApolloClient} from 'apollo-client';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {HttpLink} from 'apollo-link-http';
+import {BASEURL} from "./constant";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: 'http://localhost:4000/'
+    uri: BASEURL
 });
 
 const client = new ApolloClient({
@@ -21,7 +22,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <App />
+        <App/>
     </ApolloProvider>, document.getElementById('root')
 );
 

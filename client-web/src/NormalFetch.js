@@ -2,6 +2,7 @@ import React from "react";
 import SearchBox from "./SearchBox";
 import SearchResult from "./SearchResult";
 import Loading from "./loading";
+import {BASEURL} from "./constant";
 
 function NormalFetch() {
 
@@ -39,7 +40,7 @@ function NormalFetch() {
                     setResponse("No Result");
                 } else {
                     if (body) options.body = JSON.stringify(body);
-                    const res = await fetch(`http://localhost:4000`, options);
+                    const res = await fetch(BASEURL, options);
                     const json = await res.json();
                     setResponse(json.data.wikiCount.keyword + ":" + json.data.wikiCount.totalhits);
                 }
