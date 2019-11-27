@@ -61,16 +61,13 @@ function NormalFetch() {
     const [keyword, setKeyword] = React.useState(null);
     const [response, setResponse] = React.useState(null);
     const [error, setError] = React.useState(null);
-
-    const url = `http://localhost:4000`;
-
-    const onChange = keyword => {
-        console.log(keyword)
-    };
+    const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(() => {
         const FetchData = async () => {
             try {
+                setError(null)
+                setIsLoading(true)
                 const method = "POST"
                 const headers = {
                     'Accept': 'application/json',
@@ -91,16 +88,19 @@ function NormalFetch() {
                         "}                                                ",
                     variables : "{ \"keyword\": \"" + keyword +"\" }"
                 };
-
-                if (body) options.body = JSON.stringify(body);
-                const res = await fetch(url, options);
-                const json = await res.json();
-                console.log(json)
-                setResponse(json);
-                console.log(response.data.wikiCount)
+                if (keyword == null) {
+                    setResponse("No Result");
+                } else {
+                    if (body) options.body = JSON.stringify(body);
+                    const res = await fetch(`http://localhost:4000`, options);
+                    const json = await res.json();
+                    setResponse(json.data.wikiCount.keyword + ":" + json.data.wikiCount.totalhits);
+                }
             } catch (error) {
-                setError(error);
+                setError(error.toString());
+                setResponse(null)
             }
+            setIsLoading(false)
         };
         FetchData();
     }, [keyword]);
@@ -109,8 +109,10 @@ function NormalFetch() {
         <div>
             <div><SearchBox onSubmit={(keyword) => setKeyword(keyword)}/></div>
             <div>
-                {response && <SearchResult value={
-                    response.data.wikiCount.keyword + ":" + response.data.wikiCount.totalhits}/>
+                {error &&  <SearchResult value={error} />}
+                {isLoading ?
+                    (<Loading />) :
+                    (response && <SearchResult value={response}/>)
                 }
             </div>
         </div>
