@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import NormalFetch from "./NormalFetch";
-import ApolloFetch from "./ApolloFetch";
+import FetchNormal from "./FetchNormal";
+import FetchApollo from "./FetchApollo";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
           <div>
-              <div><ApolloFetch /></div>
-              <div><NormalFetch /></div>
+              <div><FetchApollo /></div>
+              <div><FetchNormal /></div>
           </div>
       </header>
     </div>

@@ -14,7 +14,7 @@ const GET_WIKI_HIT = gql`
     }
 `;
 
-export default function ApolloFetch() {
+export default function FetchApollo() {
 
         const [keyword, setKeyword] = React.useState("");
         const {data, loading, error} = useQuery(GET_WIKI_HIT, {variables: {keyword: keyword}});

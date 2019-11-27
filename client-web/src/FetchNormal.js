@@ -4,7 +4,7 @@ import SearchResult from "./SearchResult";
 import Loading from "./loading";
 import {BASEURL} from "./constant";
 
-function NormalFetch() {
+function FetchNormal() {
 
     const [keyword, setKeyword] = React.useState(null);
     const [response, setResponse] = React.useState(null);
@@ -66,4 +66,4 @@ function NormalFetch() {
         </div>
     );
 }
-export default NormalFetch
+export default FetchNormal
