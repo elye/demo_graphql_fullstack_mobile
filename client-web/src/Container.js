@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SearchBox from "./SearchBox";
 import NormalFetch from "./NormalFetch";
-import WikiFetch from "./WikiFetch";
+import ApolloFetch from "./ApolloFetch";
 
 export default class Container extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ export default class Container extends Component {
         return (
             <div>
                 <div><SearchBox caption={"Apollo Wiki Search"} onSubmit={(keyword) => this.onChange(keyword)}/></div>
-                <div><WikiFetch keyword={this.state.keyword}/></div>
+                <div><ApolloFetch keyword={this.state.keyword}/></div>
                 <div><NormalFetch /></div>
             </div>
         );

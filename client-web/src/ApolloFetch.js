@@ -13,7 +13,7 @@ const GET_WIKI_HIT = gql`
     }
 `;
 
-function WikiFetch({keyword}) {
+function ApolloFetch({keyword}) {
     const {data, loading, error} = useQuery(GET_WIKI_HIT, {variables: {keyword: keyword}});
 
     let result
@@ -25,4 +25,4 @@ function WikiFetch({keyword}) {
     return <div><SearchResult value={result}/></div>;
 }
 
-export default WikiFetch
+export default ApolloFetch
