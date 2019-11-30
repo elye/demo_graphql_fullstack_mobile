@@ -5,6 +5,14 @@ import Loading from "./loading";
 import {BASEURL} from "./constant";
 
 function FetchNormal() {
+    const query = `
+    query GetWikicountByKeyword($keyword: String!) {
+        wikiCount
+            (keyword: $keyword) {
+                keyword 
+                totalhits
+            } 
+    }`
 
     const [keyword, setKeyword] = React.useState(null);
     const [response, setResponse] = React.useState(null);
@@ -27,15 +35,10 @@ function FetchNormal() {
                 };
 
                 const body = {
-                    query: "query GetWikicountByKeyword($keyword: String!)" +
-                        "{ wikiCount                                      " +
-                        "   (keyword: $keyword) {                         " +
-                        "      keyword                                    " +
-                        "      totalhits                                  " +
-                        "    }                                            " +
-                        "}                                                ",
-                    variables : "{ \"keyword\": \"" + keyword +"\" }"
+                    query: query,
+                    variables : { keyword }
                 };
+
                 if (keyword == null) {
                     setResponse("No Result");
                 } else {
