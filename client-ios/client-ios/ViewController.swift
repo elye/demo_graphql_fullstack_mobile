@@ -10,7 +10,7 @@ class ViewController: UIViewController, MainView {
   @IBOutlet var loadingIndicator: UIActivityIndicatorView!
   @IBOutlet var labelResult: UILabel!
 
-  private static let baseUrl = "http://ENTER_YOUR_HOST_HERE:4000"
+  static let baseUrl = "http://ENTER_YOUR_HOST_HERE:4000"
 
   private lazy var mainPresenter = MainPresenter(view: self)
   private lazy var apolloPresenter = ApolloPresenter(view: self)
