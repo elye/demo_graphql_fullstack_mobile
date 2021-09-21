@@ -16,7 +16,7 @@ class ApolloPresenter(private val mainView: MainView) {
         )
             .enqueue(object : ApolloCall.Callback<GetWikicountByKeywordQuery.Data>() {
                 override fun onResponse(response: Response<GetWikicountByKeywordQuery.Data>) {
-                    response.data()?.wikiCount?.run {
+                    response.data?.wikiCount?.run {
                         showApolloResult("${keyword()}:${totalhits()}")
                     } ?: showApolloResult("No Result")
                 }
