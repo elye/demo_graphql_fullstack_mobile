@@ -1,0 +1,6 @@
+query GetWikicountByKeyword($keyword: String!){
+    wikiCount(keyword: $keyword) {
+        keyword
+        totalhits
+    }
+}

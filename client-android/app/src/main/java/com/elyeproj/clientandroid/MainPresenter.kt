@@ -56,7 +56,7 @@ class MainPresenter(private val mainView: MainView) {
         val params = HashMap<String, String>()
         params["query"] = queryString
         params["variables"] = "{\"keyword\": \"${searchText}\"}"
-        val body = JSONObject(params)
+        val body = JSONObject(params as Map<*, *>)
             .toString().toRequestBody("application/json; charset=utf-8".toMediaType())
 
         val httpUrl = httpUrlBuilder.build()
